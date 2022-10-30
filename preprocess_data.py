@@ -5,6 +5,17 @@ from sklearn.preprocessing import MinMaxScaler
 
 
 def get_normalised_data(data):
+    """
+    Normalises the data values using MinMaxScaler from sklearn
+    :param data: a DataFrame with columns as  ['index','Open','Close','Volume']
+    :return: a DataFrame with normalised value for all the columns except index
+    """
+    # Initialize a scaler, then apply it to the features
+    scaler = MinMaxScaler()
+    numerical = ['Open', 'Close', 'Volume']
+    data[numerical] = scaler.fit_transform(data[numerical])
+
+    return data
     
     
     
