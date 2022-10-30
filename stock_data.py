@@ -39,7 +39,13 @@ def train_test_split_linear_regression(stocks):
         label.append([(row['Close'])])
 
     # Regularize the feature and target arrays and store min/max of input data for rescaling later
-    
+    feature_bounds = [min(feature), max(feature)]
+    feature_bounds = [feature_bounds[0][0], feature_bounds[1][0]]
+    label_bounds = [min(label), max(label)]
+    label_bounds = [label_bounds[0][0], label_bounds[1][0]]
+
+    feature_scaled, feature_range = scale_range(np.array(feature), input_range=feature_bounds, target_range=[-1.0, 1.0])
+    label_scaled, label_range = scale_range(np.array(label), input_range=label_bounds, target_range=[-1.0, 1.0])
     
     
     
