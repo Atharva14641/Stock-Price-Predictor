@@ -18,5 +18,17 @@ def build_model(X, y):
     return linear_mod
 
 # def predict_prices
+def predict_prices(model, x, label_range):
+    """
+    Predict the label for given test sets
+    :param model: a linear regression model
+    :param x: testing features
+    :param label_range: normalised range of label data
+    :return: predicted labels for given features
+    """
+    x = np.reshape(x, (x.shape[0], 1))
+    predicted_price = model.predict(x)
+    predictions_rescaled, re_range = sd.scale_range(predicted_price, input_range=[-1.0, 1.0], target_range=label_range)
 
+    return predictions_rescaled.flatten()
 
